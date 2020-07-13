@@ -37,3 +37,5 @@ private:
 };
 }
 }
+
+OPENTELEMETRY_END_NAMESPACE
