@@ -5,7 +5,6 @@
 #include <sstream>
 #include <thread>
 #include <vector>
-#include "opentelemetry/exporters/ostream/metrics_exporter.h"
 #include "opentelemetry/metrics/instrument.h"
 #include "opentelemetry/nostd/unique_ptr.h"
 #include "opentelemetry/sdk/metrics/exporter.h"

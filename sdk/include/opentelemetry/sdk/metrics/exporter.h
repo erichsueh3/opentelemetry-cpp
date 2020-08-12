@@ -22,7 +22,22 @@ enum class ExportResult
    * Exporting failed. The caller must not retry exporting the same batch; the
    * batch must be dropped.
    */
-  kFailure
+  kFailure = 1,
+
+  /**
+   * The collection does not have enough space to receive the export batch.
+   */
+  kFailureFull = 2,
+
+  /**
+   * The export has timed out.
+   */
+  kFailureTimeout = 3,
+
+  /**
+   * The export() function was passed an invalid argument.
+   */
+  kFailureInvalidArgument = 4,
 };
 /**
  * MetricsExporter defines the interface that protocol-specific span exporters must

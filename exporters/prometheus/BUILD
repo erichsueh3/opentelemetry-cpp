@@ -102,3 +102,20 @@ cc_test(
         "@com_google_googletest//:gtest_main",
     ],
 )
+
+cc_binary(
+    name = "pipeline_test",
+    srcs = [
+        "test/pipeline_test_all24.cc",
+    ],
+    deps = [
+        "//api",
+        "//sdk:headers",
+        "//sdk/src/metrics",
+        # ":prometheus_collector",
+        ":prometheus_exporter",
+        # ":prometheus_utils",
+        "@com_github_jupp0r_prometheus_cpp//core",
+        "@com_github_jupp0r_prometheus_cpp//pull",
+    ],
+)
