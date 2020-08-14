@@ -1,0 +1,240 @@
+gauge 5 name2, descr3, key2, value2, key3, value3
+gauge -25 name3, descr4, key1, value1, key2, value2, key3, value3, key4, value4
+gauge -29 name3, descr3, key2, value2, key4, value4
+gauge -17 name3, descr1, key1, value1, key2, value2, key3, value3, key4, value4
+gauge 40 name1, descr4, key1, value1, key2, value2, key3, value3
+gauge 15 name1, descr1, key1, value1, key2, value2, key3, value3, key4, value4
+gauge 20 name2, descr4, key1, value1
+gauge 8 name3, descr2, key2, value2, key4, value4
+gauge -39 name2, descr2, key1, value1, key2, value2, key3, value3
+gauge -42 name3, descr4, key4, value4
+gauge -14 name4, descr2, key2, value2, key3, value3, key4, value4
+gauge 27 name2, descr1, key3, value3
+gauge 46 name2, descr2, key2, value2, key4, value4
+gauge 1 name4, descr2, key1, value1, key2, value2, key3, value3, key4, value4
+gauge 8 name3, descr1, key2, value2, key3, value3, key4, value4
+gauge -18 name1, descr3, key1, value1, key3, value3, key4, value4
+gauge 34 name2, descr2, key1, value1, key2, value2, key3, value3, key4, value4
+gauge -39 name2, descr1, key1, value1, key2, value2, key3, value3, key4, value4
+gauge 2 name2, descr3, key2, value2, key4, value4
+gauge -36 name4, descr1, key2, value2, key3, value3, key4, value4
+gauge -25 name4, descr2, key1, value1
+gauge 40 name4, descr4, key1, value1, key4, value4
+gauge -24 name3, descr2, key1, value1, key2, value2, key3, value3, key4, value4
+gauge 8 name4, descr4, key1, value1, key2, value2, key3, value3, key4, value4
+gauge 33 name3, descr4, key1, value1, key2, value2, key3, value3
+gauge -16 name3, descr4, key2, value2, key3, value3, key4, value4
+gauge 8 name4, descr3, key2, value2
+gauge -15 name3, descr2, key1, value1, key2, value2, key3, value3
+gauge 49 name3, descr4, key3, value3
+gauge -50 name1, descr4, key2, value2, key3, value3, key4, value4
+gauge 11 name1, descr3, key2, value2
+gauge 9 name1, descr1, key2, value2, key3, value3
+gauge 23 name4, descr2, key1, value1, key3, value3, key4, value4
+gauge 9 name3, descr3, key1, value1, key2, value2, key3, value3, key4, value4
+gauge 6 name2, descr3, key1, value1
+gauge 32 name3, descr4, key3, value3, key4, value4
+gauge -11 name1, descr2, key1, value1, key2, value2, key4, value4
+gauge -17 name4, descr4, key1, value1, key3, value3, key4, value4
+gauge -30 name4, descr4, key1, value1, key2, value2, key4, value4
+gauge -22 name1, descr4, key1, value1, key2, value2, key3, value3, key4, value4
+gauge -40 name4, descr1, key4, value4
+gauge 47 name4, descr3, key3, value3, key4, value4
+gauge 46 name4, descr1, key1, value1, key2, value2
+gauge -5 name4, descr3, key1, value1, key2, value2, key3, value3, key4, value4
+gauge 45 name3, descr1, key1, value1, key2, value2
+gauge -33 name1, descr1, key1, value1, key3, value3, key4, value4
+gauge 46 name2, descr2, key1, value1, key3, value3, key4, value4
+gauge 16 name1, descr1, key1, value1, key4, value4
+gauge 41 name4, descr3, key2, value2, key3, value3
+gauge 37 name1, descr3, key1, value1, key2, value2, key3, value3, key4, value4
+gauge -19 name2, descr3, key1, value1, key2, value2, key3, value3
+gauge 42 name2, descr1, key1, value1, key2, value2, key3, value3
+gauge 15 name1, descr4, key1, value1, key4, value4
+gauge -14 name1, descr2, key4, value4
+gauge -29 name4, descr3, key4, value4
+gauge 33 name2, descr4, key1, value1, key2, value2, key4, value4
+gauge -10 name1, descr2, key2, value2, key3, value3
+gauge -12 name4, descr4, key1, value1
+gauge 11 name3, descr4, key2, value2
+gauge 15 name2, descr3, key1, value1, key2, value2, key3, value3, key4, value4
+gauge -27 name1, descr1, key3, value3
+gauge 13 name3, descr1, key1, value1, key3, value3, key4, value4
+gauge 0 name1, descr2, key2, value2
+gauge -49 name4, descr4, key3, value3
+gauge -11 name2, descr2, key3, value3, key4, value4
+gauge -46 name4, descr2, key4, value4
+gauge -18 name2, descr4, key2, value2, key4, value4
+gauge -25 name2, descr4, key2, value2, key3, value3
+gauge -33 name4, descr1, key1, value1, key2, value2, key3, value3, key4, value4
+gauge -22 name1, descr2, key3, value3, key4, value4
+gauge 14 name4, descr4, key2, value2
+gauge 18 name4, descr4, key1, value1, key2, value2
+gauge 6 name4, descr2, key2, value2, key4, value4
+gauge 47 name1, descr4, key2, value2, key4, value4
+gauge 41 name3, descr1, key2, value2, key3, value3
+gauge -2 name4, descr1, key1, value1, key4, value4
+gauge 4 name1, descr4, key4, value4
+gauge 4 name4, descr3, key3, value3
+gauge -49 name4, descr1, key2, value2, key4, value4
+gauge -28 name4, descr3, key1, value1
+gauge -17 name3, descr2, key3, value3, key4, value4
+gauge 34 name2, descr3, key4, value4
+gauge 22 name2, descr4, key1, value1, key3, value3, key4, value4
+gauge -38 name1, descr3, key2, value2, key3, value3
+gauge -24 name1, descr4, key1, value1, key2, value2
+gauge -18 name2, descr1, key1, value1, key3, value3
+gauge -45 name2, descr1, key1, value1, key2, value2
+gauge 48 name3, descr1, key3, value3
+gauge 37 name3, descr3, key1, value1, key2, value2
+gauge 41 name1, descr2, key2, value2, key3, value3, key4, value4
+gauge 42 name4, descr4, key2, value2, key3, value3, key4, value4
+gauge 11 name4, descr1, key2, value2, key3, value3
+gauge -3 name1, descr1, key2, value2, key3, value3, key4, value4
+gauge 20 name4, descr3, key2, value2, key3, value3, key4, value4
+gauge 7 name2, descr4, key1, value1, key2, value2, key3, value3, key4, value4
+gauge 30 name4, descr1, key3, value3
+gauge -3 name1, descr2, key1, value1, key2, value2, key3, value3, key4, value4
+gauge 17 name1, descr1, key1, value1, key2, value2, key3, value3
+gauge 26 name3, descr3, key3, value3
+gauge 37 name1, descr2, key1, value1, key3, value3
+gauge 11 name2, descr4, key2, value2
+gauge -5 name1, descr4, key1, value1
+gauge -18 name3, descr4, key2, value2, key3, value3
+gauge 44 name1, descr4, key3, value3
+gauge -43 name2, descr2, key2, value2
+gauge -14 name2, descr3, key1, value1, key2, value2
+gauge -14 name1, descr2, key1, value1, key3, value3, key4, value4
+gauge -10 name2, descr4, key1, value1, key3, value3
+gauge 27 name2, descr1, key2, value2
+gauge 23 name4, descr1, key1, value1, key3, value3, key4, value4
+gauge -12 name4, descr2, key1, value1, key2, value2, key4, value4
+gauge 16 name1, descr4, key3, value3, key4, value4
+gauge 40 name1, descr1, key1, value1, key2, value2, key4, value4
+gauge -21 name3, descr3, key1, value1, key3, value3, key4, value4
+gauge 35 name4, descr4, key1, value1, key2, value2, key3, value3
+gauge -22 name3, descr3, key2, value2, key3, value3, key4, value4
+gauge -16 name4, descr2, key1, value1, key4, value4
+gauge -28 name2, descr2, key2, value2, key3, value3, key4, value4
+gauge -4 name2, descr4, key3, value3
+gauge -19 name1, descr1, key1, value1
+gauge 39 name3, descr3, key1, value1
+gauge -2 name2, descr1, key3, value3, key4, value4
+gauge 50 name1, descr3, key1, value1, key2, value2, key4, value4
+gauge -21 name4, descr4, key3, value3, key4, value4
+gauge -45 name3, descr3, key2, value2, key3, value3
+gauge 46 name2, descr3, key1, value1, key3, value3
+gauge -24 name2, descr1, key1, value1
+gauge 33 name1, descr1, key2, value2, key4, value4
+gauge -36 name2, descr1, key4, value4
+gauge 35 name3, descr2, key1, value1, key2, value2, key4, value4
+gauge 4 name3, descr1, key1, value1, key4, value4
+gauge 23 name2, descr1, key2, value2, key4, value4
+gauge 2 name1, descr1, key4, value4
+gauge 6 name2, descr3, key3, value3, key4, value4
+gauge 1 name4, descr2, key1, value1, key2, value2
+gauge 10 name3, descr3, key1, value1, key4, value4
+gauge 15 name4, descr4, key2, value2, key3, value3
+gauge 11 name4, descr3, key1, value1, key3, value3, key4, value4
+gauge -36 name3, descr1, key2, value2
+gauge 15 name4, descr2, key3, value3, key4, value4
+gauge -16 name2, descr1, key2, value2, key3, value3, key4, value4
+gauge -18 name3, descr2, key2, value2
+gauge 4 name4, descr3, key1, value1, key2, value2, key3, value3
+gauge -49 name3, descr1, key3, value3, key4, value4
+gauge 31 name2, descr1, key1, value1, key3, value3, key4, value4
+gauge 14 name1, descr3, key1, value1
+gauge 49 name3, descr3, key4, value4
+gauge 20 name3, descr4, key2, value2, key4, value4
+gauge -42 name3, descr4, key1, value1, key3, value3
+gauge 19 name2, descr4, key3, value3, key4, value4
+gauge 19 name3, descr4, key1, value1, key3, value3, key4, value4
+gauge 26 name3, descr3, key1, value1, key2, value2, key4, value4
+gauge -11 name3, descr4, key1, value1
+gauge -29 name1, descr2, key2, value2, key4, value4
+gauge 19 name2, descr2, key1, value1, key4, value4
+gauge -30 name3, descr1, key1, value1
+gauge -46 name2, descr4, key1, value1, key2, value2
+gauge 20 name4, descr2, key1, value1, key2, value2, key3, value3
+gauge -39 name1, descr1, key1, value1, key2, value2
+gauge 40 name3, descr1, key1, value1, key2, value2, key3, value3
+gauge 13 name4, descr4, key4, value4
+gauge -8 name1, descr3, key3, value3
+gauge -45 name4, descr4, key1, value1, key3, value3
+gauge 16 name1, descr2, key1, value1, key2, value2, key3, value3
+gauge 23 name4, descr1, key1, value1, key2, value2, key4, value4
+gauge 39 name4, descr2, key3, value3
+gauge 7 name3, descr3, key2, value2
+gauge -43 name4, descr4, key2, value2, key4, value4
+gauge 5 name3, descr4, key1, value1, key2, value2
+gauge 32 name1, descr3, key4, value4
+gauge 9 name1, descr4, key1, value1, key3, value3, key4, value4
+gauge 27 name1, descr3, key1, value1, key2, value2
+gauge -42 name3, descr3, key1, value1, key2, value2, key3, value3
+gauge -46 name1, descr3, key2, value2, key3, value3, key4, value4
+gauge -15 name3, descr4, key1, value1, key2, value2, key4, value4
+gauge -45 name4, descr3, key1, value1, key2, value2
+gauge -16 name2, descr4, key2, value2, key3, value3, key4, value4
+gauge -25 name4, descr1, key3, value3, key4, value4
+gauge -41 name3, descr1, key1, value1, key2, value2, key4, value4
+gauge 36 name1, descr2, key1, value1
+gauge 0 name1, descr1, key2, value2
+gauge -45 name4, descr1, key1, value1, key2, value2, key3, value3
+gauge 42 name1, descr4, key2, value2
+gauge 30 name1, descr3, key1, value1, key4, value4
+gauge -6 name3, descr3, key3, value3, key4, value4
+gauge 28 name2, descr3, key1, value1, key4, value4
+gauge -42 name1, descr3, key1, value1, key3, value3
+gauge -17 name3, descr2, key1, value1, key2, value2
+gauge 18 name3, descr1, key4, value4
+gauge 29 name2, descr3, key1, value1, key2, value2, key4, value4
+gauge -33 name3, descr2, key1, value1
+gauge -5 name3, descr2, key4, value4
+gauge 17 name3, descr3, key1, value1, key3, value3
+gauge -45 name3, descr2, key2, value2, key3, value3, key4, value4
+gauge -26 name1, descr3, key2, value2, key4, value4
+gauge -37 name2, descr4, key1, value1, key2, value2, key3, value3
+gauge -20 name2, descr3, key3, value3
+gauge 40 name4, descr1, key1, value1, key3, value3
+gauge 19 name4, descr1, key1, value1
+gauge -46 name4, descr2, key2, value2, key3, value3
+gauge -25 name4, descr1, key2, value2
+gauge 48 name1, descr3, key1, value1, key2, value2, key3, value3
+gauge -41 name1, descr2, key1, value1, key4, value4
+gauge 37 name2, descr1, key1, value1, key2, value2, key4, value4
+gauge -48 name1, descr3, key3, value3, key4, value4
+gauge -12 name2, descr2, key2, value2, key3, value3
+gauge 42 name4, descr2, key2, value2
+gauge 50 name2, descr2, key3, value3
+gauge -16 name3, descr1, key2, value2, key4, value4
+gauge 45 name2, descr2, key1, value1, key2, value2, key4, value4
+gauge 7 name1, descr4, key1, value1, key2, value2, key4, value4
+gauge -19 name3, descr2, key3, value3
+gauge 37 name2, descr3, key1, value1, key3, value3, key4, value4
+gauge -8 name1, descr2, key1, value1, key2, value2
+gauge 13 name2, descr3, key2, value2
+gauge -5 name2, descr3, key2, value2, key3, value3, key4, value4
+gauge -28 name3, descr2, key1, value1, key3, value3, key4, value4
+gauge -37 name3, descr1, key1, value1, key3, value3
+gauge -33 name4, descr3, key1, value1, key2, value2, key4, value4
+gauge -50 name2, descr1, key2, value2, key3, value3
+gauge 42 name4, descr2, key1, value1, key3, value3
+gauge -42 name2, descr2, key4, value4
+gauge 7 name1, descr2, key3, value3
+gauge -48 name4, descr3, key1, value1, key3, value3
+gauge 43 name1, descr4, key1, value1, key3, value3
+gauge -23 name1, descr4, key2, value2, key3, value3
+gauge 34 name2, descr2, key1, value1, key3, value3
+gauge 42 name2, descr2, key1, value1
+gauge 46 name4, descr3, key2, value2, key4, value4
+gauge 27 name3, descr2, key1, value1, key3, value3
+gauge 14 name1, descr1, key3, value3, key4, value4
+gauge -49 name1, descr1, key1, value1, key3, value3
+gauge -31 name3, descr2, key2, value2, key3, value3
+gauge -34 name2, descr4, key4, value4
+gauge 43 name2, descr1, key1, value1, key4, value4
+gauge 11 name3, descr4, key1, value1, key4, value4
+gauge 29 name2, descr2, key1, value1, key2, value2
+gauge 20 name4, descr3, key1, value1, key4, value4
+gauge 10 name2, descr4, key1, value1, key4, value4
+gauge -4 name3, descr2, key1, value1, key4, value4
