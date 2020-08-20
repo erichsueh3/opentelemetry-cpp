@@ -45,7 +45,7 @@ public:
    * This constructor initializes the collection for metrics to export
    * in this class with default capacity
    */
-  explicit PrometheusCollector(int max_collection_size = 2048);
+  explicit PrometheusCollector(int max_collection_size = 204800);
 
   /**
    * Collects all metrics data from metricsToCollect collection.

@@ -78,41 +78,41 @@ void PrometheusCollector::AddMetricData(const std::vector<sdk::metrics::Record> 
      */
     auto ValidAggregator = [](sdk::metrics::Record record) {
       auto aggregator_variant = record.GetAggregator();
-      if (nostd::holds_alternative<nostd::shared_ptr<metric_sdk::Aggregator<int>>>(
+      if (nostd::holds_alternative<std::shared_ptr<metric_sdk::Aggregator<int>>>(
               aggregator_variant))
       {
         auto aggregator =
-            nostd::get<nostd::shared_ptr<metric_sdk::Aggregator<int>>>(aggregator_variant);
+            nostd::get<std::shared_ptr<metric_sdk::Aggregator<int>>>(aggregator_variant);
         if (!aggregator)
         {
           return false;
         }
       }
-      else if (nostd::holds_alternative<nostd::shared_ptr<metric_sdk::Aggregator<short>>>(
+      else if (nostd::holds_alternative<std::shared_ptr<metric_sdk::Aggregator<short>>>(
                    aggregator_variant))
       {
         auto aggregator =
-            nostd::get<nostd::shared_ptr<metric_sdk::Aggregator<short>>>(aggregator_variant);
+            nostd::get<std::shared_ptr<metric_sdk::Aggregator<short>>>(aggregator_variant);
         if (!aggregator)
         {
           return false;
         }
       }
-      else if (nostd::holds_alternative<nostd::shared_ptr<metric_sdk::Aggregator<float>>>(
+      else if (nostd::holds_alternative<std::shared_ptr<metric_sdk::Aggregator<float>>>(
                    aggregator_variant))
       {
         auto aggregator =
-            nostd::get<nostd::shared_ptr<metric_sdk::Aggregator<float>>>(aggregator_variant);
+            nostd::get<std::shared_ptr<metric_sdk::Aggregator<float>>>(aggregator_variant);
         if (!aggregator)
         {
           return false;
         }
       }
-      else if (nostd::holds_alternative<nostd::shared_ptr<metric_sdk::Aggregator<double>>>(
+      else if (nostd::holds_alternative<std::shared_ptr<metric_sdk::Aggregator<double>>>(
                    aggregator_variant))
       {
         auto aggregator =
-            nostd::get<nostd::shared_ptr<metric_sdk::Aggregator<double>>>(aggregator_variant);
+            nostd::get<std::shared_ptr<metric_sdk::Aggregator<double>>>(aggregator_variant);
         if (!aggregator)
         {
           return false;

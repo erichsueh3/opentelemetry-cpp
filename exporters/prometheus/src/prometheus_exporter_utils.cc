@@ -82,26 +82,26 @@ void PrometheusExporterUtils::SetMetricFamily(metric_sdk::Record &record,
   // unpack the variant and set the metric data to metric family struct
   auto agg_var    = record.GetAggregator();
   auto labels_str = record.GetLabels();
-  if (nostd::holds_alternative<nostd::shared_ptr<metric_sdk::Aggregator<int>>>(agg_var))
+  if (nostd::holds_alternative<std::shared_ptr<metric_sdk::Aggregator<int>>>(agg_var))
   {
-    auto aggregator = nostd::get<nostd::shared_ptr<metric_sdk::Aggregator<int>>>(agg_var);
+    auto aggregator = nostd::get<std::shared_ptr<metric_sdk::Aggregator<int>>>(agg_var);
     SetMetricFamilyByAggregator(aggregator, labels_str, metric_family);
   }
-  else if (nostd::holds_alternative<nostd::shared_ptr<metric_sdk::Aggregator<short>>>(agg_var))
+  else if (nostd::holds_alternative<std::shared_ptr<metric_sdk::Aggregator<short>>>(agg_var))
   {
-    auto aggregator = nostd::get<nostd::shared_ptr<metric_sdk::Aggregator<short>>>(agg_var);
+    auto aggregator = nostd::get<std::shared_ptr<metric_sdk::Aggregator<short>>>(agg_var);
     SetMetricFamilyByAggregator(aggregator, labels_str, metric_family);
   }
-  else if (nostd::holds_alternative<nostd::shared_ptr<metric_sdk::Aggregator<float>>>(
+  else if (nostd::holds_alternative<std::shared_ptr<metric_sdk::Aggregator<float>>>(
                record.GetAggregator()))
   {
-    auto aggregator = nostd::get<nostd::shared_ptr<metric_sdk::Aggregator<float>>>(agg_var);
+    auto aggregator = nostd::get<std::shared_ptr<metric_sdk::Aggregator<float>>>(agg_var);
     SetMetricFamilyByAggregator(aggregator, labels_str, metric_family);
   }
-  else if (nostd::holds_alternative<nostd::shared_ptr<metric_sdk::Aggregator<double>>>(
+  else if (nostd::holds_alternative<std::shared_ptr<metric_sdk::Aggregator<double>>>(
                record.GetAggregator()))
   {
-    auto aggregator = nostd::get<nostd::shared_ptr<metric_sdk::Aggregator<double>>>(agg_var);
+    auto aggregator = nostd::get<std::shared_ptr<metric_sdk::Aggregator<double>>>(agg_var);
     SetMetricFamilyByAggregator(aggregator, labels_str, metric_family);
   }
 }
@@ -173,7 +173,7 @@ bool PrometheusExporterUtils::IsValidName(const std::string &name)
  */
 template <typename T>
 void PrometheusExporterUtils::SetMetricFamilyByAggregator(
-    nostd::shared_ptr<metric_sdk::Aggregator<T>> aggregator,
+    std::shared_ptr<metric_sdk::Aggregator<T>> aggregator,
     std::string labels_str,
     prometheus_client::MetricFamily *metric_family)
 {
@@ -388,7 +388,7 @@ std::vector<std::pair<std::string, std::string>> PrometheusExporterUtils::ParseL
  */
 template <typename T>
 std::vector<T> PrometheusExporterUtils::GetQuantilesVector(
-    nostd::shared_ptr<metric_sdk::Aggregator<T>> aggregator)
+    std::shared_ptr<metric_sdk::Aggregator<T>> aggregator)
 {
   std::vector<T> quantiles;
   for (double q = 0; q <= 1; q += QUANTILE_STEP)

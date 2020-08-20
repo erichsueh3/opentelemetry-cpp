@@ -104,17 +104,35 @@ cc_test(
 )
 
 cc_binary(
-    name = "pipeline_test",
+    name = "first_pipeline_test",
     srcs = [
-        "test/pipeline_test_all24.cc",
+        "test/first_pipeline_test.cc",
     ],
     deps = [
         "//api",
         "//sdk:headers",
         "//sdk/src/metrics",
-        # ":prometheus_collector",
+        ":prometheus_collector",
         ":prometheus_exporter",
-        # ":prometheus_utils",
+        ":prometheus_utils",
+        "@com_github_jupp0r_prometheus_cpp//core",
+        "@com_github_jupp0r_prometheus_cpp//pull",
+    ],
+)
+
+
+cc_binary(
+    name = "second_pipeline_test",
+    srcs = [
+        "test/second_pipeline_test.cc",
+    ],
+    deps = [
+        "//api",
+        "//sdk:headers",
+        "//sdk/src/metrics",
+        ":prometheus_collector",
+        ":prometheus_exporter",
+        ":prometheus_utils",
         "@com_github_jupp0r_prometheus_cpp//core",
         "@com_github_jupp0r_prometheus_cpp//pull",
     ],

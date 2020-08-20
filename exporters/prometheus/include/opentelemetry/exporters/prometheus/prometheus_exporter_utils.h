@@ -77,7 +77,7 @@ private:
    * Set value to metric family for different aggregator
    */
   template <typename T>
-  static void SetMetricFamilyByAggregator(nostd::shared_ptr<metric_sdk::Aggregator<T>> aggregator,
+  static void SetMetricFamilyByAggregator(std::shared_ptr<metric_sdk::Aggregator<T>> aggregator,
                                           std::string labels_str,
                                           prometheus_client::MetricFamily *metric_family);
 
@@ -151,7 +151,7 @@ private:
    * Build a quantiles vector from aggregator
    */
   template <typename T>
-  static std::vector<T> GetQuantilesVector(nostd::shared_ptr<metric_sdk::Aggregator<T>> aggregator);
+  static std::vector<T> GetQuantilesVector(std::shared_ptr<metric_sdk::Aggregator<T>> aggregator);
 
   /**
    * Handle Counter and Gauge.
