@@ -22,7 +22,8 @@ add_library(
 add_executable(
   prometheus_exporter_test
   test/prometheus_exporter_test.cc test/prometheus_collector_test.cc
-  test/prometheus_exporter_utils_test.cc)
+  test/prometheus_exporter_utils_test.cc
+  test/first_pipeline_test.cc test/second_pipeline_test.cc)
 
 target_link_libraries(
   prometheus_exporter_test ${GTEST_BOTH_LIBRARIES} ${CMAKE_THREAD_LIBS_INIT}
