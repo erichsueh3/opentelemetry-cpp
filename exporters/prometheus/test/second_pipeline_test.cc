@@ -6,6 +6,7 @@
 #include <memory>
 #include <utility>
 #include <unistd.h>
+#include <stdlib.h>     
 
 #include "opentelemetry/exporters/prometheus/prometheus_exporter.h"
 #include "opentelemetry/metrics/instrument.h"
@@ -74,17 +75,18 @@ class RecordGenerator {
                 std::string labels;
                 std::shared_ptr<metric_sdk::Aggregator<double>> aggregator;
 
+                std::vector<double> placeholder;
                 if(agg == "counter" || agg == "gauge") {
-                    if(agg == "counter") {
-                        aggregator = CreateAgg(metric_sdk::AggregatorKind::Counter);
-                    }
-                    else {
-                        aggregator = CreateAgg(metric_sdk::AggregatorKind::Gauge);
-                    }
-
                     int val;
                     CounterGaugeFieldTranslation(v, val, name, description, labels);
-                    // std::cout << "name:"<< name << "|description:" << description << "|labels:" << labels << std::endl;
+
+                    if(agg == "counter") {
+                        aggregator = CreateAgg(metric_sdk::AggregatorKind::Counter, placeholder);
+                    }
+                    else {
+                        aggregator = CreateAgg(metric_sdk::AggregatorKind::Gauge, placeholder);
+                    }
+
 
                     aggregator->update(val);
                     aggregator->checkpoint();
@@ -96,15 +98,35 @@ class RecordGenerator {
                     HistogramSketchExactFieldTranslation(v, vals, etc, name, description, labels);
 
                     if(agg == "histogram") {
-                        aggregator = CreateAgg(metric_sdk::AggregatorKind::Histogram);
+                        aggregator = CreateAgg(metric_sdk::AggregatorKind::Histogram, etc);
                     }
+                    // Note that the 'etc' vector, which is a vector of quantile points for sketch,
+                    // is not actually used since there is no actual way to configure what quantiles
+                    // we want to see currently (the PrometheusExporterUtils class has chosen the 
+                    // quantile values {0, 0.5, 0.9, 0.95, 0.99, 1} to show). The 'etc' vector for
+                    // sketch aggregators reflects the possibility of a future enhancement to 
+                    // make quantiles configurable.
                     else if(agg == "sketch") {
-                        aggregator = CreateAgg(metric_sdk::AggregatorKind::Sketch);
+                        aggregator = CreateAgg(metric_sdk::AggregatorKind::Sketch, etc);
                     }
+                    // Note that the 'etc' vector, which is a vector of quantile points for exact,
+                    // is not actually used since there is no actual way to configure what quantiles
+                    // we want to see currently (the PrometheusExporterUtils class has chosen the 
+                    // quantile values {0, 0.5, 0.9, 0.95, 0.99, 1} to show). The 'etc' vector for
+                    // exact aggregators here reflects this.              
                     else {
-                        aggregator = CreateAgg(metric_sdk::AggregatorKind::Exact);
+                        // mode randomly determines if the ExactAggregator is created in 
+                        // 'in order' mode or 'quantile' mode - The translation for both types
+                        // is the same, except 'in order' mode does not have quantile values when
+                        // it is translated to a Prometheus summary.
+                        bool mode = rand() % 2;
+                        aggregator = CreateAgg(metric_sdk::AggregatorKind::Exact, etc, mode);
                     }
 
+                    for (auto i : vals) {
+                        aggregator->update(i);
+                    }
+                    aggregator->checkpoint();
 
                 }
 
@@ -115,23 +137,25 @@ class RecordGenerator {
         }
 
     private:
-        static std::shared_ptr<metric_sdk::Aggregator<double>> CreateAgg(metric_sdk::AggregatorKind kind, bool exactMode = true) {
+        static std::shared_ptr<metric_sdk::Aggregator<double>> CreateAgg(metric_sdk::AggregatorKind kind, std::vector<double> etc, bool exactMode = true) {
             std::shared_ptr<metric_sdk::Aggregator<double>> aggregator;
             switch (kind)
             {
+                //Counter is tested in the first pipeline test, but is already included in the first pipeline test
                 case metric_sdk::AggregatorKind::Counter:
                 {
                 aggregator = std::shared_ptr<metric_sdk::Aggregator<double>>(
                     new metric_sdk::CounterAggregator<double>(opentelemetry::metrics::InstrumentKind::Counter));
                 break;
                 }
-                case metric_sdk::AggregatorKind::MinMaxSumCount:
-                {
-                aggregator =
-                    std::shared_ptr<metric_sdk::Aggregator<double>>(new metric_sdk::MinMaxSumCountAggregator<double>(
-                        opentelemetry::metrics::InstrumentKind::Counter));
-                break;
-                }
+                // MMSC is already tested in the first pipeline test
+                // case metric_sdk::AggregatorKind::MinMaxSumCount:
+                // {
+                // aggregator =
+                //     std::shared_ptr<metric_sdk::Aggregator<double>>(new metric_sdk::MinMaxSumCountAggregator<double>(
+                //         opentelemetry::metrics::InstrumentKind::Counter));
+                // break;
+                // }
                 case metric_sdk::AggregatorKind::Gauge:
                 {
                 aggregator = std::shared_ptr<metric_sdk::Aggregator<double>>(
@@ -146,10 +170,9 @@ class RecordGenerator {
                 }
                 case metric_sdk::AggregatorKind::Histogram:
                 {
-                std::vector<double> boundaries{10, 20};
                 aggregator =
                     std::shared_ptr<metric_sdk::Aggregator<double>>(new metric_sdk::HistogramAggregator<double>(
-                        opentelemetry::metrics::InstrumentKind::Counter, boundaries));
+                        opentelemetry::metrics::InstrumentKind::Counter, etc));
                 break;
                 }
                 case metric_sdk::AggregatorKind::Exact:
@@ -164,52 +187,20 @@ class RecordGenerator {
             return aggregator;
             }
 
-
         static void CounterGaugeFieldTranslation(std::vector<std::string> fields, int &val, std::string &name, std::string &description, std::string &labels) {
             val = stoi(fields[0]);
 
             std::string ndl = fields[1];
             NameDesLabTranslation(ndl, name, description, labels);
-
         }
 
         static void HistogramSketchExactFieldTranslation(std::vector<std::string> fields, std::vector<int> &vals, std::vector<double> &etc, std::string &name, std::string &description, std::string &labels) {
+            
             std::string str_vals = fields[0];
+            StringToIntegralListTranslation(str_vals, vals);
+            
             std::string str_etc = fields[1];
-
-            StringToIntegralListTranslation<int>(str_vals, vals);
-            StringToIntegralListTranslation<double>(str_etc, etc);
-
-            // std::string str_vals = fields[0];
-
-            // str_vals.erase(str_vals.begin());
-            // str_vals.erase(str_vals.end()-1);
-
-            // std::stringstream ss1(str_vals);
-            // std::string v;
-            // while(std::getline(ss1, v, ',')) {
-            //     vals.push_back(stoi(v));
-            // }
-
-
-            // std::string str_etc = fields[1];
-
-            // str_etc.erase(str_etc.begin());
-            // str_etc.erase(str_etc.end()-1);
-
-            // std::stringstream ss2(str_etc);
-            // while(std::getline(ss2, v, ',')) {
-            //     etc.push_back(stoi(v));
-            // }
-
-            for(auto i: vals) {
-                std::cout << ">" << i << "<";
-            }
-            std::cout << std::endl;
-            for(auto i: etc) {
-                std::cout << ">" << i << "<";
-            }
-            std::cout << std::endl;
+            StringToIntegralListTranslation(str_etc, etc);
 
             std::string ndl = fields[2];
             NameDesLabTranslation(ndl, name, description, labels);
@@ -232,10 +223,7 @@ class RecordGenerator {
                 v.push_back(stod(val));
             }
         }
-
 };
-
-
 
 
 

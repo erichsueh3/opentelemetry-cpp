@@ -131,7 +131,9 @@ private:
                       const std::vector<T> &quantiles,
                       const std::string &labels,
                       std::chrono::nanoseconds time,
-                      prometheus_client::MetricFamily *metric_family);
+                      prometheus_client::MetricFamily *metric_family,
+                      bool do_quantile,
+                      std::vector<double> quantile_points);
 
   /**
    * Set time and labels to metric data
@@ -151,7 +153,8 @@ private:
    * Build a quantiles vector from aggregator
    */
   template <typename T>
-  static std::vector<T> GetQuantilesVector(std::shared_ptr<metric_sdk::Aggregator<T>> aggregator);
+  static std::vector<T> GetQuantilesVector(std::shared_ptr<metric_sdk::Aggregator<T>> aggregator,
+                                           const std::vector<double> &quantile_points);
 
   /**
    * Handle Counter and Gauge.
@@ -182,7 +185,9 @@ private:
   static void SetValue(std::vector<T> values,
                        metric_sdk::AggregatorKind kind,
                        std::vector<T> quantiles,
-                       prometheus_client::ClientMetric *metric);
+                       prometheus_client::ClientMetric *metric,
+                       bool do_quantile,
+                       const std::vector<double> &quantile_points);
 };
 }  // namespace prometheus
 }  // namespace exporter
