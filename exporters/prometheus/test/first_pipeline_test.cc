@@ -17,6 +17,10 @@
 #include "opentelemetry/sdk/metrics/meter_provider.h"
 #include "opentelemetry/metrics/provider.h"
 
+#include "opentelemetry/sdk/metrics/record.h"
+#include "opentelemetry/sdk/metrics/aggregator/aggregator.h"
+#include "opentelemetry/sdk/metrics/aggregator/counter_aggregator.h"
+
 namespace metrics_api = opentelemetry::metrics;
 namespace metrics_sdk = opentelemetry::sdk::metrics;
 namespace prometheus_exporter = opentelemetry::exporter::prometheus;
@@ -65,9 +69,9 @@ public:
         while(true){
             std::cerr << "waiting for scrape from Prometheus" << std::endl;
             usleep(.1*10000000);
-        } 
+        }  
         // 6. shutdown metric collector
-        c.stop();
+        // c.stop();
         std::cerr <<"controller shutdown" <<std::endl;
         
         while(true){
@@ -105,7 +109,7 @@ private:
             std::string name = ndl.substr(0, ndl.find(','));
             std::string description = ndl.substr(name.size() + 2, ndl.find(',', name.size()+1)-ndl.find(',')-2);
             std::string labels = ndl.substr(name.size() + description.size()+4);
-            
+
             map<string,string> labelmap = str2map(labels);
             auto labelkv = opentelemetry::trace::KeyValueIterableView<decltype(labelmap)>{labelmap};
 
@@ -186,6 +190,7 @@ private:
             }
             //usleep(.1*1000000);
         }
+        goldenData.close();
         
     }
 };
