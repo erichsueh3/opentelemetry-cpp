@@ -93,36 +93,7 @@ private:
     static void doSomeSimulatedWork(opentelemetry::nostd::shared_ptr<metrics_api::Meter> m){
         ifstream goldenData;
         goldenData.open("exporters/prometheus/test/PrometheusDataFirst.csv");
-        
-        auto ictr= m->NewIntCounter("ictr","none", "none", true);
-        auto iudctr= m->NewIntUpDownCounter("iudctr","none", "none", true);
-        auto ivrec= m->NewIntValueRecorder("ivrec","none", "none", true);
-        auto isobs= m->NewIntSumObserver("isobs","none", "none", true, &IntObserverConstructorCallback);
-        auto iudobs= m->NewIntUpDownSumObserver("iudobs","none", "none", true, &IntObserverConstructorCallback);
-        auto ivobs= m->NewIntValueObserver("ivobs","none", "none", true, &IntObserverConstructorCallback);
-        
-        auto sctr= m->NewShortCounter("testname","none", "none", true);
-        auto sudctr= m->NewShortUpDownCounter("sudctr","none", "none", true);
-        auto svrec= m->NewShortValueRecorder("svrec","none", "none", true);
-        auto ssobs= m->NewShortSumObserver("ssobs","none", "none", true, &ShortObserverConstructorCallback);
-        auto sudobs= m->NewShortUpDownSumObserver("sudobs","none", "none", true, &ShortObserverConstructorCallback);
-        auto svobs= m->NewShortValueObserver("svobs","none", "none", true, &ShortObserverConstructorCallback);
-        
-        auto fctr= m->NewFloatCounter("fctr","none", "none", true);
-        auto fudctr= m->NewFloatUpDownCounter("fudctr","none", "none", true);
-        auto fvrec= m->NewFloatValueRecorder("fvrec","none", "none", true);
-        auto fsobs= m->NewFloatSumObserver("fsobs","none", "none", true, &FloatObserverConstructorCallback);
-        auto fudobs= m->NewFloatUpDownSumObserver("fudobs","none", "none", true, &FloatObserverConstructorCallback);
-        auto fvobs= m->NewFloatValueObserver("fvobs","none", "none", true, &FloatObserverConstructorCallback);
-        
-        auto dctr= m->NewDoubleCounter("dctr","none", "none", true);
-        auto dudctr= m->NewDoubleUpDownCounter("dudctr","none", "none", true);
-        auto dvrec= m->NewDoubleValueRecorder("dvrec","none", "none", true);
-        auto dsobs= m->NewDoubleSumObserver("dsobs","none", "none", true, &DoubleObserverConstructorCallback);
-        auto dudobs= m->NewDoubleUpDownSumObserver("dudobs","none", "none", true, &DoubleObserverConstructorCallback);
-        auto dvobs= m->NewDoubleValueObserver("dvobs","none", "none", true, &DoubleObserverConstructorCallback);
-        
-        
+   
         // EXCEPTIONS: Can occur when an appropriate update value is passed to an instrument,
         // an invalid name, or a duplicated name
         
@@ -130,57 +101,85 @@ private:
         while (std::getline(goldenData,line)){
             std::string instrument = line.substr(0,line.find(','));
             int val = stoi(line.substr(line.find(',')+1,line.find('"')-line.find(',')-2));
-            std::string labels = line.substr(line.find('"')+1, line.rfind('"')-line.find('"')-1);
+            std::string ndl = line.substr(line.find('"')+1, line.rfind('"')-line.find('"')-1);
+            std::string name = ndl.substr(0, ndl.find(','));
+            std::string description = ndl.substr(name.size() + 2, ndl.find(',', name.size()+1)-ndl.find(',')-2);
+            std::string labels = ndl.substr(name.size() + description.size()+4);
+            
             map<string,string> labelmap = str2map(labels);
             auto labelkv = opentelemetry::trace::KeyValueIterableView<decltype(labelmap)>{labelmap};
 
             if (instrument == "ictr"){
+                auto ictr= m->NewIntCounter(name, description, "none", true);
                 ictr->add(val, labelkv);
             } else if (instrument == "iudctr"){
+                auto iudctr= m->NewIntUpDownCounter(name, description, "none", true);
                 iudctr->add(val, labelkv);
             } else if (instrument == "ivrec"){
+                auto ivrec= m->NewIntValueRecorder(name, description, "none", true);
                 ivrec->record(val, labelkv);
             } else if (instrument == "isobs"){
+                auto isobs= m->NewIntSumObserver(name, description, "none", true, &IntObserverConstructorCallback);
                 isobs->observe(val, labelkv);
             } else if (instrument == "iudobs"){
+                auto iudobs= m->NewIntUpDownSumObserver(name, description, "none", true, &IntObserverConstructorCallback);
                 iudobs->observe(val, labelkv);
             } else if (instrument == "ivobs"){
+                auto ivobs= m->NewIntValueObserver(name, description, "none", true, &IntObserverConstructorCallback);
                 ivobs->observe(val, labelkv);
             } else if (instrument == "sctr"){
+                auto sctr= m->NewShortCounter(name, description, "none", true);
                 sctr->add(val, labelkv);
             } else if (instrument == "sudctr"){
+                auto sudctr= m->NewShortUpDownCounter(name, description, "none", true);
                 sudctr->add(val, labelkv);
             } else if (instrument == "svrec"){
+                auto svrec= m->NewShortValueRecorder(name, description, "none", true);
                 svrec->record(val, labelkv);
             } else if (instrument == "ssobs"){
+                auto ssobs= m->NewShortSumObserver(name, description, "none", true, &ShortObserverConstructorCallback);
                 ssobs->observe(val, labelkv);
             } else if (instrument == "sudobs"){
+                auto sudobs= m->NewShortUpDownSumObserver(name, description, "none", true, &ShortObserverConstructorCallback);
                 sudobs->observe(val, labelkv);
             } else if (instrument == "svobs"){
+                auto svobs= m->NewShortValueObserver(name, description, "none", true, &ShortObserverConstructorCallback);
                 svobs->observe(val, labelkv);
             } else if (instrument == "fctr"){
+                auto fctr= m->NewFloatCounter(name, description, "none", true);
                 fctr->add(val, labelkv);
             } else if (instrument == "fudctr"){
+                auto fudctr= m->NewFloatUpDownCounter(name, description, "none", true);
                 fudctr->add(val, labelkv);
             } else if (instrument == "fvrec"){
+                auto fvrec= m->NewFloatValueRecorder(name, description, "none", true);
                 fvrec->record(val, labelkv);
             } else if (instrument == "fsobs"){
+                auto fsobs= m->NewFloatSumObserver(name, description, "none", true, &FloatObserverConstructorCallback);
                 fsobs->observe(val, labelkv);
             } else if (instrument == "fudobs"){
+                auto fudobs= m->NewFloatUpDownSumObserver(name, description, "none", true, &FloatObserverConstructorCallback);
                 fudobs->observe(val, labelkv);
             } else if (instrument == "fvobs"){
+                auto fvobs= m->NewFloatValueObserver(name, description, "none", true, &FloatObserverConstructorCallback);
                 fvobs->observe(val, labelkv);
             } else if (instrument == "dctr"){
+                auto dctr= m->NewDoubleCounter(name, description, "none", true);
                 dctr->add(val, labelkv);
             } else if (instrument == "dudctr"){
+                auto dudctr= m->NewDoubleUpDownCounter(name, description, "none", true);
                 dudctr->add(val, labelkv);
             } else if (instrument == "dvrec"){
+                auto dvrec= m->NewDoubleValueRecorder(name, description, "none", true);
                 dvrec->record(val, labelkv);
             } else if (instrument == "dsobs"){
+                auto dsobs= m->NewDoubleSumObserver(name, description, "none", true, &DoubleObserverConstructorCallback);
                 dsobs->observe(val, labelkv);
             } else if (instrument == "dudobs"){
+                auto dudobs= m->NewDoubleUpDownSumObserver(name, description, "none", true, &DoubleObserverConstructorCallback);
                 dudobs->observe(val, labelkv);
             } else if (instrument == "dvobs"){
+                auto dvobs= m->NewDoubleValueObserver(name, description, "none", true, &DoubleObserverConstructorCallback);
                 dvobs->observe(val, labelkv);
             } else {
                 std::cerr <<"Bad entry" <<std::endl;
