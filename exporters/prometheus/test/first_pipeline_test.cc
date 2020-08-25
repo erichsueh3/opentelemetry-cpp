@@ -44,7 +44,7 @@ public:
         
         // 1. Initialize exporter
         std::string addr = "localhost:8080";
-        std::unique_ptr<metrics_sdk::MetricsExporter> e = std::unique_ptr<metrics_sdk::MetricsExporter>(new prometheus_exporter::PrometheusExporter(addr));
+        std::unique_ptr<prometheus_exporter::PrometheusExporter> e = std::unique_ptr<prometheus_exporter::PrometheusExporter>(new prometheus_exporter::PrometheusExporter(addr));
         
         // 2. Initialize processor
         std::shared_ptr<metrics_sdk::MetricsProcessor> p = std::shared_ptr<metrics_sdk::MetricsProcessor>(new metrics_sdk::UngroupedMetricsProcessor(false));
@@ -62,14 +62,17 @@ public:
         doSomeSimulatedWork(m);
         auto end = std::chrono::steady_clock::now();
         std::cerr <<"Simulation complete after: "<<std::chrono::duration_cast<std::chrono::milliseconds>(end-start).count() <<" milliseconds" <<std::endl;
-        
+        while(true){
+            std::cerr << "waiting for scrape from Prometheus" << std::endl;
+            usleep(.1*10000000);
+        } 
         // 6. shutdown metric collector
         c.stop();
         std::cerr <<"controller shutdown" <<std::endl;
         
         while(true){
             std::cerr << "waiting for scrape from Prometheus" << std::endl;
-            usleep(.1*1000000);
+            usleep(.1*10000000);
         }        
     }
     
@@ -98,7 +101,7 @@ private:
         auto iudobs= m->NewIntUpDownSumObserver("iudobs","none", "none", true, &IntObserverConstructorCallback);
         auto ivobs= m->NewIntValueObserver("ivobs","none", "none", true, &IntObserverConstructorCallback);
         
-        auto sctr= m->NewShortCounter("sctr","none", "none", true);
+        auto sctr= m->NewShortCounter("testname","none", "none", true);
         auto sudctr= m->NewShortUpDownCounter("sudctr","none", "none", true);
         auto svrec= m->NewShortValueRecorder("svrec","none", "none", true);
         auto ssobs= m->NewShortSumObserver("ssobs","none", "none", true, &ShortObserverConstructorCallback);
