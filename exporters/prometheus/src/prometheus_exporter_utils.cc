@@ -333,7 +333,7 @@ void PrometheusExporterUtils::SetMetricBasic(prometheus_client::ClientMetric &me
                                              std::chrono::nanoseconds time,
                                              const std::string &labels)
 {
-  metric.timestamp_ms = time.count() / 1000;
+  metric.timestamp_ms = time.count() / 1000000;
 
   auto label_pairs = ParseLabel(labels);
   if (!label_pairs.empty())
