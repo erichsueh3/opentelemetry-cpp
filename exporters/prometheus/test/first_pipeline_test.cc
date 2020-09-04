@@ -185,7 +185,6 @@ private:
             } else {
                 std::cerr <<"Bad entry" <<std::endl;
             }
-            //usleep(.1*1000000);
         }
         goldenData.close();
         
