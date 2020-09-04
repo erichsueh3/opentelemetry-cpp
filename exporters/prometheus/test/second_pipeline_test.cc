@@ -115,12 +115,11 @@ class RecordGenerator {
                     // quantile values {0, 0.5, 0.9, 0.95, 0.99, 1} to show). The 'etc' vector for
                     // exact aggregators here reflects this.              
                     else {
-                        // mode randomly determines if the ExactAggregator is created in 
-                        // 'in order' mode or 'quantile' mode - The translation for both types
-                        // is the same, except 'in order' mode does not have quantile values when
-                        // it is translated to a Prometheus summary.
-                        bool mode = rand() % 2;
-                        aggregator = CreateAgg(metric_sdk::AggregatorKind::Exact, etc, mode);
+                    // We do not test an ExactAggregator that is not in in-order mode; testing an 
+                    // ExactAggregator in quantile estimation mode validates the same type of data
+                    // that it would for an Exact Aggregator in in-order mode, with the addition of 
+                    // quantile data.
+                        aggregator = CreateAgg(metric_sdk::AggregatorKind::Exact, etc);
                     }
 
                     for (auto i : vals) {
@@ -137,7 +136,7 @@ class RecordGenerator {
         }
 
     private:
-        static std::shared_ptr<metric_sdk::Aggregator<double>> CreateAgg(metric_sdk::AggregatorKind kind, std::vector<double> etc, bool exactMode = true) {
+        static std::shared_ptr<metric_sdk::Aggregator<double>> CreateAgg(metric_sdk::AggregatorKind kind, std::vector<double> etc) {
             std::shared_ptr<metric_sdk::Aggregator<double>> aggregator;
             switch (kind)
             {
@@ -178,7 +177,7 @@ class RecordGenerator {
                 case metric_sdk::AggregatorKind::Exact:
                 {
                 aggregator = std::shared_ptr<metric_sdk::Aggregator<double>>(new metric_sdk::ExactAggregator<double>(
-                    opentelemetry::metrics::InstrumentKind::Counter, exactMode));
+                    opentelemetry::metrics::InstrumentKind::Counter, true));
                 break;
                 }
                 default:
