@@ -66,10 +66,7 @@ public:
         doSomeSimulatedWork(m);
         auto end = std::chrono::steady_clock::now();
         std::cerr <<"Simulation complete after: "<<std::chrono::duration_cast<std::chrono::milliseconds>(end-start).count() <<" milliseconds" <<std::endl;
-        while(true){
-            std::cerr << "waiting for scrape from Prometheus" << std::endl;
-            usleep(.1*10000000);
-        }  
+ 
         // 6. shutdown metric collector
         // c.stop();
         std::cerr <<"controller shutdown" <<std::endl;
